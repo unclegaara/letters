@@ -1,10 +1,8 @@
 #-*- coding: utf8 -*-
-import sys
+import sys 
 
-def counter(text):
-    letters = {}
+def counter(letters,text):
     for symbol in text:
-        print symbol
         if symbol in letters:
             letters[symbol] += 1
         else:
@@ -13,9 +11,14 @@ def counter(text):
 
 
 def main():
+    letters = {}
     for text in sys.argv[1:]:
-        for k, v in counter(text).items():
-            print k, "=", v
+        presorted = list(counter(letters,text).items())
+
+    presorted.sort(key = lambda item: item[1])
+    presorted.reverse()
+    for k, v in presorted:
+        print k, "=", v
 
 if __name__=="__main__":
     main()
